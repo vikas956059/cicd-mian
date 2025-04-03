@@ -11,29 +11,29 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git credentialsId: 'jenkinsgithub', url: 'https://github.com/vikas956059/cicd-mian.git'
+        git branch: 'main', credentialsId: 'jenkinsgithub', url: 'https://github.com/vikas956059/cicd-mian.git'
       }
     }
 
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build dockerimagename
+          dockerImage = docker.build(dockerimagename)
         }
       }
     }
 
     stage('Pushing Image') {
       environment {
-               registryCredential = 'dockerhublogin'
-           }
+        registryCredential = 'dockerhublogin'
+      }
       steps{
         script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
             dockerImage.push("latest")
           }
         }
       }
     }
- }
+  }
 }
