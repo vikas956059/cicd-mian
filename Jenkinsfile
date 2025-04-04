@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git branch: 'main', credentialsId: 'jenkinsgithub', url: 'https://github.com/vikas956059/cicd-mian.git'
+        git branch: 'master', credentialsId: 'jenkinsgithub', url: 'https://github.com/vikas956059/cicd-mian.git'
       }
     }
 
