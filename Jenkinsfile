@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "node"
+    dockerimagename = "vikas956059/nodeapp"
     dockerImage = ""
   }
 
@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git branch: 'master', credentialsId: 'jenkinsgithub', url: 'https://github.com/vikas956059/cicd-mian.git'
+        git branch: 'main', credentialsId: 'jenkinsgithub', url: 'https://github.com/vikas956059/cicd-mian.git'
       }
     }
 
@@ -29,7 +29,7 @@ pipeline {
       }
       steps{
         script {
-          docker.withRegistry('https://hub.docker.com/repositories/vikas956059', registryCredential) {
+          docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push("latest")
           }
         }
@@ -37,3 +37,4 @@ pipeline {
     }
   }
 }
+
