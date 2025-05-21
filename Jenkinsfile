@@ -35,6 +35,21 @@ pipeline {
         }
       }
     }
+    stage('Rolling Update on EKS using kubectl') {
+      steps {
+        script {
+          sh """
+            echo '🔁 Updating deployment with new image...'
+            kubectl set image deployment/nodeapp nodeapp=${dockerimagename}:${BUILD_NUMBER} --record
+            kubectl rollout status deployment/nodeapp
+            echo '✅ Rolling update completed.'
+          """
+        }
+      }
+    }
+   }
+
+
   }
 }
 
