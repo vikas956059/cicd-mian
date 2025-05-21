@@ -5,6 +5,8 @@ pipeline {
   environment {
     dockerimagename = "vikas956059/nodeapp"
     registryCredential = 'dockerhublogin'
+    AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+    AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
     KUBECONFIG = credentials('kubconfig-eks')
   }
 
