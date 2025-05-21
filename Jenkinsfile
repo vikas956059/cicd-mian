@@ -5,7 +5,7 @@ pipeline {
   environment {
     dockerimagename = "vikas956059/nodeapp"
     registryCredential = 'dockerhublogin'
-    KUBECONFIG = credentials('kubeconfig-eks')
+    KUBECONFIG = credentials('kubconfig-eks')
   }
 
   stages {
