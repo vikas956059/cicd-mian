@@ -18,7 +18,8 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build(dockerimagename)
+#          dockerImage = docker.build(dockerimagename)
+           dockerImage = docker.build("${dockerimagename}:${BUILD_NUMBER}")
         }
       }
     }
@@ -30,7 +31,8 @@ pipeline {
       steps{
         script {
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
-            dockerImage.push("latest")
+#           dockerImage.push("latest")
+            dockerImage.push()
           }
         }
       }
